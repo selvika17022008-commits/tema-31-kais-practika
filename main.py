@@ -3,18 +3,15 @@ import os
 
 DB_FILE = "books.json"
 
-
 def load_books():
     if not os.path.exists(DB_FILE):
         return []
     with open(DB_FILE, "r", encoding="utf-8") as f:
         return json.load(f)
 
-
 def save_books(books):
     with open(DB_FILE, "w", encoding="utf-8") as f:
         json.dump(books, f, ensure_ascii=False, indent=4)
-
 
 # --- Ветка feature/add-book ---
 def add_book():
@@ -47,7 +44,6 @@ def add_book():
     save_books(books)
     print("Книга успешно добавлена!")
 
-
 # --- Ветка feature/list-and-stats ---
 def show_all_books():
     books = load_books()
@@ -57,7 +53,6 @@ def show_all_books():
     for idx, book in enumerate(books, 1):
         print(f"{idx}. {book['author']} — '{book['title']}' ({book['rating']}/5), прочитано: {book['date']}")
 
-
 def show_average_rating():
     books = load_books()
     if not books:
@@ -65,7 +60,6 @@ def show_average_rating():
         return
     avg = sum(book['rating'] for book in books) / len(books)
     print(f"Средняя оценка всех книг: {avg:.2f}")
-
 
 def show_author_stats():
     books = load_books()
@@ -79,7 +73,6 @@ def show_author_stats():
     print("Статистика по авторам:")
     for author, count in stats.items():
         print(f"{author}: {count} кн.")
-
 
 # --- Ветка feature/delete ---
 def delete_book():
