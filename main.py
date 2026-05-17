@@ -91,7 +91,6 @@ def delete_book():
     except ValueError:
         print("Введите число.")
 
-
 def main():
     while True:
         print("\n--- Трекер прочитанных книг ---")
