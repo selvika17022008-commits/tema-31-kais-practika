@@ -20,6 +20,13 @@ def save_books(books):
 def add_book():
     author = input("Введите автора: ")
     title = input("Введите название книги: ")
+
+    books = load_books()
+    for book in books:
+        if book['author'] == author and book['title'] == title:
+            print("Ошибка: Такая книга уже есть!")
+            return
+
     try:
         rating = int(input("Введите оценку (1-5): "))
         if not (1 <= rating <= 5):
